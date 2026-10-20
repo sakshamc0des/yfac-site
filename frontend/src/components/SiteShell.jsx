@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const links = [
   ["about", "About"],
@@ -31,6 +31,12 @@ export function fallbackSitePhoto(event) {
 }
 
 export function Header({ page }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [page]);
+
   return (
     <header className="site-header">
       <div className="wrap nav">
@@ -38,11 +44,21 @@ export function Header({ page }) {
           <span className="brand-mark" aria-hidden="true">✺</span>
           <span><b>Youth For A Cause</b><small>JSS GROUP OF INSTITUTIONS</small></span>
         </a>
-        <nav className="nav-links" aria-label="Main navigation">
+        <button
+          className="nav-toggle"
+          type="button"
+          aria-expanded={menuOpen}
+          aria-controls="main-navigation"
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <span aria-hidden="true">{menuOpen ? "×" : "☰"}</span>
+          <span>{menuOpen ? "Close" : "Menu"}</span>
+        </button>
+        <nav id="main-navigation" className={`nav-links${menuOpen ? " is-open" : ""}`} aria-label="Main navigation">
           {links.map(([id, label]) => (
-            <a className={page === id ? "active" : ""} href={`#${id}`} key={id}>{label}</a>
+            <a className={page === id ? "active" : ""} href={`#${id}`} key={id} onClick={() => setMenuOpen(false)}>{label}</a>
           ))}
-          <a className="nav-pill" href="https://www.instagram.com/yfacjssaten" target="_blank" rel="noreferrer">
+          <a className="nav-pill" href="https://www.instagram.com/yfacjssaten" target="_blank" rel="noreferrer" onClick={() => setMenuOpen(false)}>
             @yfacjssaten
           </a>
         </nav>
