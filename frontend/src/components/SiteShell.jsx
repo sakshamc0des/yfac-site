@@ -112,7 +112,16 @@ export function Footer({ onAlerts }) {
           <a href="#notifications" onClick={(event) => { event.preventDefault(); onAlerts(); }}>Get notifications</a>
           <a href="https://www.instagram.com/yfacjssaten" target="_blank" rel="noreferrer">Instagram</a>
         </div>
-        <div className="copyright">© Youth For A Cause · JSS Group of Institutions</div>
+        <div className="copyright">
+          <span>© Youth For A Cause · JSS Group of Institutions</span>
+          <span className="developer-credit">
+            Developed by{" "}
+            <a href="https://www.linkedin.com/in/saksham-raghuvanshi-37b801381/" target="_blank" rel="noreferrer">
+              Saksham Raghuvanshi
+            </a>
+            {" "}· CTC, Youth For A Cause
+          </span>
+        </div>
       </div>
     </footer>
   );
