@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { defaultGallery, images } from "../data/images.js";
 import { fallbackSitePhoto, Photo, photoBackground } from "./SiteShell.jsx";
 
@@ -53,10 +53,28 @@ function PeopleList({ people, first, second }) {
 }
 
 export default function TeamPanel({ data, tab, repository, onRequest }) {
-  const [zoomed, setZoomed] = useState("");
+  const [zoomedIndex, setZoomedIndex] = useState(-1);
   const sortedHolders = [...data.post_holders].sort((a, b) => a.pri - b.pri);
   const sortedFaculty = [...data.faculty].sort((a, b) => a.pri - b.pri);
   const gallery = data.gallery.length ? data.gallery : defaultGallery;
+  const zoomed = zoomedIndex >= 0 ? gallery[zoomedIndex] : null;
+
+  useEffect(() => {
+    if (!zoomed) return undefined;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const galleryItems = data.gallery.length ? data.gallery : defaultGallery;
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") setZoomedIndex(-1);
+      if (event.key === "ArrowRight") setZoomedIndex((index) => (index + 1) % galleryItems.length);
+      if (event.key === "ArrowLeft") setZoomedIndex((index) => (index - 1 + galleryItems.length) % galleryItems.length);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [data.gallery, zoomed]);
 
   return <section className="section">
     <div className="wrap">
@@ -98,17 +116,36 @@ export default function TeamPanel({ data, tab, repository, onRequest }) {
         </>}
       </>}
       {tab === "gallery" && <>
-        <div className="page-hero" style={{ ...photoBackground(images.garba, repository.photoUrl), paddingInline: 0 }}><span className="mono">Gallery</span><h1 className="serif">Moments that <i>matter.</i></h1><p>From NGO visits and art sessions to marathons and Garba nights. A look at life at YFAC.</p></div>
-        <div className="photo-grid">{gallery.map((item) => {
+        <div className="page-hero gallery-hero" style={{ ...photoBackground(images.garba, repository.photoUrl), paddingInline: 0 }}>
+          <span className="mono">Our memories · {gallery.length} moments</span>
+          <h1 className="serif">Moments that <i>matter.</i></h1>
+          <p>From NGO visits and art sessions to marathons and Garba nights. A look at life at YFAC.</p>
+          <a className="gallery-explore" href="#gallery-grid">Explore the photos <span aria-hidden="true">↓</span></a>
+        </div>
+        <div className="gallery-heading" id="gallery-grid">
+          <div><span className="mono">The YFAC story</span><h2 className="serif">Life, <i>together.</i></h2></div>
+          <p>{gallery.length} photos <span aria-hidden="true">·</span> Select any photo to view it larger</p>
+        </div>
+        <div className="gallery-grid">{gallery.map((item, index) => {
           const src = publicPhoto(item, repository);
-          return <button className="gallery-button" key={item.id} onClick={() => setZoomed(src)} aria-label={`Enlarge ${item.cap}`}>
+          return <button className="gallery-button" key={item.id} onClick={() => setZoomedIndex(index)} aria-label={`View ${item.cap}`} type="button">
             <Photo src={src} alt={item.cap} caption={item.cap} />
+            <span className="gallery-zoom" aria-hidden="true">↗</span>
           </button>;
         })}</div>
       </>}
-      {zoomed && <button className="lightbox" onClick={() => setZoomed("")} aria-label="Close image">
-        <img src={zoomed} alt="Enlarged gallery item" />
-      </button>}
+      {zoomed && <div className="lightbox" role="dialog" aria-modal="true" aria-label={`Photo: ${zoomed.cap}`} onClick={(event) => {
+        if (event.target === event.currentTarget) setZoomedIndex(-1);
+      }}>
+        <button className="lightbox-close" onClick={() => setZoomedIndex(-1)} aria-label="Close image" type="button">×</button>
+        <button className="lightbox-nav lightbox-previous" onClick={() => setZoomedIndex((index) => (index - 1 + gallery.length) % gallery.length)} aria-label="Previous photo" type="button">‹</button>
+        <figure className="lightbox-figure">
+          <img key={zoomed.id} src={publicPhoto(zoomed, repository)} alt={zoomed.cap} onError={fallbackSitePhoto} />
+          <figcaption><span>{zoomed.cap}</span><span>{zoomedIndex + 1} / {gallery.length}</span></figcaption>
+        </figure>
+        <button className="lightbox-nav lightbox-next" onClick={() => setZoomedIndex((index) => (index + 1) % gallery.length)} aria-label="Next photo" type="button">›</button>
+        <span className="lightbox-hint">Use ← → to browse · Esc to close</span>
+      </div>}
     </div>
   </section>;
 }

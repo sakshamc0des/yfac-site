@@ -31,7 +31,7 @@ function PhotoGrid({ keys, photoUrl }) {
 }
 
 function HomePage({ photoUrl }) {
-  return <>
+  return <div className="home-page">
     <section className="hero">
       <div className="wrap hero-content">
         <span className="mono">Youth For A Cause · JSS Group of Institutions</span>
@@ -40,7 +40,12 @@ function HomePage({ photoUrl }) {
         <div className="hero-actions"><a className="button" href="#initiatives">Explore initiatives ↗</a><a className="button outline" href="#events">View events</a></div>
       </div>
     </section>
-    <div className="ticker">Not for fame, for impact ✦ Small acts, collective effort ✦ Be a part of YFAC ✦</div>
+    <div className="ticker" aria-label="Not for fame, for impact. Small acts, collective effort. Be a part of YFAC.">
+      <div className="ticker-track" aria-hidden="true">
+        <span>Not for fame, for impact ✦ Small acts, collective effort ✦ Be a part of YFAC ✦</span>
+        <span>Not for fame, for impact ✦ Small acts, collective effort ✦ Be a part of YFAC ✦</span>
+      </div>
+    </div>
     <section className="section"><div className="wrap two-col">
       <div><span className="mono">01 — Who we are</span><h2 className="section-title serif">Small acts. <i>Collective effort.</i></h2></div>
       <div className="muted"><p>We believe change begins with small acts of kindness, collective effort, and a willingness to make a difference. Through social drives, community outreach and creative initiatives, we encourage students to step beyond classrooms.</p><p>YFAC is more than a student society. It is a community that brings people together to create change, build connections, and make every effort count.</p><a className="button outline" href="#about">Our story</a></div>
@@ -54,7 +59,7 @@ function HomePage({ photoUrl }) {
       <SectionHeading eyebrow="Be a part of YFAC">Ready to make every <i>effort count?</i></SectionHeading>
       <a className="button" href="#join">Join the family ↗</a>
     </div></section>
-  </>;
+  </div>;
 }
 
 function AboutPage({ photoUrl }) {
@@ -107,7 +112,7 @@ function InitiativesPage({ photoUrl }) {
 
 function EventsPage({ photoUrl }) {
   const events = [
-    ["Pod Graffiti", "Teams transform their designated pods with colourful artwork and imaginative designs."],
+    ["Pot Graffiti", "Teams transform their designated pots with colourful artwork and imaginative designs."],
     ["Treasure Valley", "A treasure hunt testing observation, teamwork and problem-solving."],
     ["Lifestyle Puzzles", "A challenge that encourages participants to think logically and work together."],
     ["Beyblade", "A competitive and entertaining event of friendly battles."],

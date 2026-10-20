@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import AdminPanel from "./components/AdminPanel.jsx";
 import LiveEventsPage from "./components/LiveEventsPage.jsx";
 import { StaticPage } from "./components/Pages.jsx";
@@ -34,6 +34,14 @@ export default function App() {
   const [role, setRole] = useState("visitor");
   const [toast, setToast] = useState("");
   const [edited, setEdited] = useState(null);
+  const [introPhase, setIntroPhase] = useState("entering");
+  const introTimers = useRef([]);
+
+  const dismissIntro = useCallback(() => {
+    introTimers.current.forEach(window.clearTimeout);
+    setIntroPhase("leaving");
+    introTimers.current = [window.setTimeout(() => setIntroPhase("done"), 500)];
+  }, []);
 
   const notify = useCallback((message) => {
     setToast(message);
@@ -78,6 +86,46 @@ export default function App() {
       window.removeEventListener("hashchange", updateRoute);
     };
   }, [notify, refresh]);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setIntroPhase("done");
+      return undefined;
+    }
+    introTimers.current = [
+      window.setTimeout(() => setIntroPhase("leaving"), 2300),
+      window.setTimeout(() => setIntroPhase("done"), 2850),
+    ];
+    return () => introTimers.current.forEach(window.clearTimeout);
+  }, []);
+
+  useEffect(() => {
+    const targets = document.querySelectorAll(
+      "main .section, main .page-hero, main .photo-grid, main .gallery-button, main .quote, main .live-event-card, main .empty-events, main .list-row, main .person, main .faculty-card, main .value-card, main .card-panel",
+    );
+    if (!("IntersectionObserver" in window)) {
+      targets.forEach((target) => target.classList.add("motion-visible"));
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("motion-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -36px 0px" });
+
+    targets.forEach((target, index) => {
+      if (target.classList.contains("motion-visible")) return;
+      target.classList.add("motion-reveal");
+      target.style.setProperty("--motion-delay", `${Math.min(index % 5, 4) * 75}ms`);
+      observer.observe(target);
+    });
+
+    return () => observer.disconnect();
+  }, [route.page, route.tab, data]);
 
   const perform = useCallback(async (operation, successMessage) => {
     try {
@@ -272,6 +320,18 @@ export default function App() {
   } : undefined;
 
   return <div className="app-shell" style={sitePhotoStyle}>
+    {introPhase !== "done" && <div className={`intro-screen${introPhase === "leaving" ? " is-leaving" : ""}`} role="status" aria-label="Welcome to Youth For A Cause">
+      <div className="intro-orbit intro-orbit-one" aria-hidden="true" />
+      <div className="intro-orbit intro-orbit-two" aria-hidden="true" />
+      <div className="intro-content">
+        <span className="intro-mark" aria-hidden="true">✺</span>
+        <span className="intro-kicker">JSS Group of Institutions</span>
+        <h1 className="intro-title">Youth <i>For</i> A Cause</h1>
+        <span className="intro-tagline">Not for fame. For impact.</span>
+        <span className="intro-progress" aria-hidden="true"><span /></span>
+      </div>
+      <button className="intro-skip" onClick={dismissIntro} type="button">Skip intro <span aria-hidden="true">↗</span></button>
+    </div>}
     <Header page={route.page} />
     {announcements}
     {data.announcements.length > 0 && "Notification" in window && Notification.permission === "default" &&
