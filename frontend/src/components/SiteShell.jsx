@@ -119,7 +119,6 @@ export function Footer({ onAlerts }) {
             <a href="https://www.linkedin.com/in/saksham-raghuvanshi-37b801381/" target="_blank" rel="noreferrer">
               Saksham Raghuvanshi
             </a>
-            {" "}· CTC, Youth For A Cause
           </span>
         </div>
       </div>

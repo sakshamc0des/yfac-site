@@ -50,6 +50,23 @@ function HomePage({ photoUrl }) {
       <div><span className="mono">01 — Who we are</span><h2 className="section-title serif">Small acts. <i>Collective effort.</i></h2></div>
       <div className="muted"><p>We believe change begins with small acts of kindness, collective effort, and a willingness to make a difference. Through social drives, community outreach and creative initiatives, we encourage students to step beyond classrooms.</p><p>YFAC is more than a student society. It is a community that brings people together to create change, build connections, and make every effort count.</p><a className="button outline" href="#about">Our story</a></div>
     </div></section>
+    <section className="section home-initiatives-section"><div className="wrap">
+      <SectionHeading eyebrow="02 — What we do">Many hands. <i>Meaningful action.</i></SectionHeading>
+      <div className="home-initiatives-grid">
+        <a className="home-initiative-card" href="#initiatives">
+          <span className="home-initiative-number">01 / OUTREACH</span>
+          <h3 className="serif">Show up for <i>our community.</i></h3>
+          <p>From NGO visits to community drives, we work alongside people and causes beyond campus.</p>
+          <span className="home-initiative-link">Explore social outreach <span aria-hidden="true">↗</span></span>
+        </a>
+        <a className="home-initiative-card" href="#initiatives">
+          <span className="home-initiative-number">02 / CREATIVITY</span>
+          <h3 className="serif">Make ideas <i>come alive.</i></h3>
+          <p>Art, culture and campus activities bring students together to learn, create and make an impact.</p>
+          <span className="home-initiative-link">Explore our initiatives <span aria-hidden="true">↗</span></span>
+        </a>
+      </div>
+    </div></section>
     <section className="section"><div className="wrap">
       <SectionHeading eyebrow="03 — Moments">Impact, <i>in frames</i></SectionHeading>
       <PhotoGrid keys={["nirb", "garbap", "run"]} photoUrl={photoUrl} /><p style={{ marginTop: "2rem" }}><a className="button outline" href="#gallery">Open the gallery</a></p>

@@ -328,6 +328,7 @@ export default function App() {
         <span className="intro-kicker">JSS Group of Institutions</span>
         <h1 className="intro-title">Youth <i>For</i> A Cause</h1>
         <span className="intro-tagline">Not for fame. For impact.</span>
+        <span className="intro-credit">Developed by <strong>Saksham Raghuvanshi</strong><span>CTC · Youth For A Cause</span></span>
         <span className="intro-progress" aria-hidden="true"><span /></span>
       </div>
       <button className="intro-skip" onClick={dismissIntro} type="button">Skip intro <span aria-hidden="true">↗</span></button>
