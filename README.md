@@ -31,7 +31,13 @@ The Supabase free plan can cover a small project within its current quotas; free
 1. Create a Supabase project and copy its project URL and anon/public key from **Project Settings → API**.
 2. Paste them into `frontend/config.js` as `url` and `anon`.
 3. Run `backend/supabase/schema.sql` and `backend/supabase/live_events.sql` once each in the Supabase SQL editor.
-4. Create a public Storage bucket named `photos`. If it did not exist when you ran the SQL, run the three storage policy statements at the end of `backend/supabase/schema.sql`.
+4. The schema creates the public Storage bucket named `photos` and its policies. If you already ran the schema before this bucket-creation step was added, run this once in the Supabase SQL Editor:
+
+   ```sql
+   insert into storage.buckets (id, name, public)
+   values ('photos', 'photos', true)
+   on conflict (id) do update set public = true;
+   ```
 5. In **Authentication → Providers**, enable Google and configure its OAuth callback using the URL displayed by Supabase.
 6. Set the Supabase Site URL to your deployed frontend domain and add both the domain and `http://localhost:5173/` to Redirect URLs.
 7. Sign in on the site at `#admin` using the Google account that will administer it. Then run the following in the SQL editor, replacing the email:

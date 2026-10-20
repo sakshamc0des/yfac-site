@@ -79,7 +79,11 @@ begin
   update requests set status = case when ok then 'approved' else 'rejected' end where id = req;
 end $$;
 
--- Photos: Storage > New bucket > name "photos" > Public bucket ON. Then run: -----------
+-- Photos -----------------------------------------------------------------------------
+insert into storage.buckets (id, name, public)
+values ('photos', 'photos', true)
+on conflict (id) do update set public = true;
+
 create policy "public photo read"  on storage.objects for select using (bucket_id = 'photos');
 create policy "admin photo upload" on storage.objects for insert with check (bucket_id = 'photos' and my_role() = 'admin');
 create policy "admin photo delete" on storage.objects for delete using (bucket_id = 'photos' and my_role() = 'admin');

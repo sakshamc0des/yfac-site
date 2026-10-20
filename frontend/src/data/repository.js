@@ -269,9 +269,13 @@ function createSupabaseRepository(config) {
       const payload = { ...record };
       if (file) {
         const path = `${table}/${crypto.randomUUID()}.jpg`;
+        const maxDimension = table === "gallery" ? 1400
+          : table === "events" ? 1800
+            : ["faculty", "post_holders"].includes(table) ? 640
+              : 800;
         unwrap(await supabase.storage.from("photos").upload(
           path,
-          await compressImage(file, table === "gallery" ? 1400 : table === "events" ? 1800 : 800),
+          await compressImage(file, maxDimension),
           { contentType: "image/jpeg" },
         ));
         payload.photo_path = path;

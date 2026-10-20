@@ -81,7 +81,8 @@ button { cursor: pointer; }
 .empty-events h2 { margin: .6rem 0; font-size: clamp(2rem,5vw,4rem); }
 .faculty-grid { display: grid; gap: 1.5rem; margin-top: 2rem; }
 .faculty-card { display: grid; grid-template-columns: minmax(240px,.7fr) minmax(0,1.3fr); gap: 2rem; align-items: center; padding: 1.25rem; border: 1px solid var(--line); background: #35100fc7; }
-.faculty-card .photo-card { width: 100%; max-width: 380px; margin: 0; }
+.faculty-card .photo-card { width: 100%; max-width: 260px; margin: 0; }
+.faculty-card .photo-card img { aspect-ratio: 4/5; max-height: 325px; }
 .faculty-card h2 { margin: .6rem 0; font-size: clamp(2rem,4vw,3.5rem); }
 .admin-event-list { display: grid; gap: 1rem; margin-top: 2rem; }
 .admin-event-row { display: grid; grid-template-columns: minmax(150px,.3fr) 1fr; gap: 1.5rem; align-items: center; padding: 1rem; border: 1px solid var(--line); background: #35100fc7; }
@@ -92,8 +93,8 @@ button { cursor: pointer; }
 .registrations-panel h3 { margin-top: 0; }
 .list { border-top: 1px solid var(--line); }
 .list-row { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 1rem; align-items: center; padding: 1rem 0; border-bottom: 1px solid var(--line); }
-.team-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(190px,1fr)); gap: 1.5rem; }
-.person { padding: .8rem; color: var(--bg); background: var(--cream); border: 8px dotted var(--cream); box-shadow: 0 18px 34px #0005; transition: transform .25s ease, box-shadow .25s ease; }
+.team-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,190px),1fr)); gap: 1.5rem; }
+.person { width: 100%; max-width: 280px; justify-self: center; padding: .8rem; color: var(--bg); background: var(--cream); border: 8px dotted var(--cream); box-shadow: 0 18px 34px #0005; transition: transform .25s ease, box-shadow .25s ease; }
 .person:hover { transform: translateY(-5px) rotate(-1deg); box-shadow: 0 24px 38px #0007; }
 .person img, .avatar { display: grid; width: 100%; aspect-ratio: 4/5; place-items: center; object-fit: cover; background: #4a1414; color: var(--gold); font: 4rem Fraunces,serif; }
 .person h3 { margin: .8rem 0 .2rem; font: 700 1.3rem Fraunces,serif; }
