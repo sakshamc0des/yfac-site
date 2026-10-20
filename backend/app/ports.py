@@ -1,0 +1,13 @@
+from typing import Protocol
+
+
+class NotificationRepository(Protocol):
+    async def is_admin(self, access_token: str) -> bool: ...
+
+    async def list_subscriptions(self) -> list[dict[str, str]]: ...
+
+    async def remove_subscriptions(self, endpoints: list[str]) -> None: ...
+
+
+class PushSender(Protocol):
+    def send(self, subscription: dict[str, str], payload: str) -> None: ...

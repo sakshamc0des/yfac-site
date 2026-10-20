@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%8C%BB%3C/text%3E%3C/svg%3E">
+<title>Youth For A Cause (YFAC) - Legacy</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,600&family=Manrope:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#2b0c0c;--bg2:#1c0606;--gold:#f6c21b;--cream:#f8f0e1;--mut:#d9c7b0;--line:#f8f0e130;--coral:#f0826a;--teal:#6fd0ba;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg2);color:var(--cream);font-family:Manrope,system-ui,sans-serif;line-height:1.7;font-size:17px;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg2);z-index:40}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;opacity:.07;z-index:30;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+a{color:inherit}
+.s{font-family:Fraunces,Georgia,serif;font-weight:700;line-height:1;letter-spacing:-.02em}
+.s i{font-weight:600;color:var(--gold)}
+.m{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+.w{max-width:1180px;margin:auto;padding:0 1.6rem}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:35;background:#1c0606cc;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:76px;gap:1rem}
+.brand{display:flex;align-items:center;gap:.8rem;text-decoration:none}
+.brand svg{width:40px;height:40px}
+.brand b{display:block;font-family:Fraunces,serif;font-size:1.2rem;line-height:1.1}
+.brand span{display:block;font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.3em;color:var(--gold)}
+.links{display:flex;align-items:center;gap:2rem}
+.links a{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;text-decoration:none;color:var(--mut);padding:.3rem 0;border-bottom:1px solid transparent;transition:.25s}
+.links a:hover,.links a.on{color:var(--gold);border-color:var(--gold)}
+.links a.pill{background:var(--gold);color:#2b0c0c;padding:.75rem 1.3rem;border-radius:999px;border:0;font-weight:700}
+.links a.pill:hover{background:var(--cream);color:#2b0c0c}
+.burger{display:none;background:none;border:1px solid var(--line);color:var(--cream);padding:.5rem .9rem;font:inherit;font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.2em;cursor:pointer;border-radius:999px}
+.page{display:none}.page.active{display:block}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s ease}
+.rv.in{opacity:1;transform:none}
+/* hero */
+.hero{position:relative;overflow:hidden;min-height:86vh;display:flex;align-items:center;background:radial-gradient(55% 55% at 85% 15%,#b8432a66,transparent 70%),radial-gradient(45% 55% at 5% 95%,#f6c21b26,transparent 70%),linear-gradient(165deg,#521313,#2b0c0c 55%,#1c0606)}
+.hero .w{position:relative;z-index:2;padding-top:5rem;padding-bottom:6rem;width:100%}
+.hero .m{display:flex;align-items:center;gap:1rem}
+.hero .m::before{content:"";width:70px;height:1px;background:var(--gold)}
+.hero h1{font-size:clamp(3.6rem,11vw,9.2rem);margin:2rem 0 2rem;max-width:11ch}
+.hero p{max-width:34rem;color:var(--mut);font-size:1.12rem}
+.bg-sun{position:absolute;right:-12%;top:50%;width:min(760px,90vw);transform:translateY(-50%);opacity:.13;animation:spin 120s linear infinite;z-index:1}
+@keyframes spin{to{transform:translateY(-50%) rotate(360deg)}}
+.emblem{position:absolute;right:6%;top:14%;width:170px;z-index:2}
+.emblem .ring{animation:rot 30s linear infinite;transform-origin:center}
+@keyframes rot{to{transform:rotate(360deg)}}
+.emblem text{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:3.5px;fill:var(--cream)}
+.btns{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2.6rem}
+.btn{font-family:'Space Mono',monospace;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;text-decoration:none;padding:1.1rem 1.9rem;border-radius:999px;border:1px solid var(--gold);background:var(--gold);color:#2b0c0c;font-weight:700;transition:.25s;display:inline-block}
+.btn:hover{background:transparent;color:var(--gold)}
+.btn.o{background:transparent;color:var(--cream);border-color:#f8f0e155}
+.btn.o:hover{border-color:var(--gold);color:var(--gold)}
+/* sections */
+.sec{padding:7rem 0;position:relative}
+.h2{font-size:clamp(2.4rem,6vw,4.8rem);margin:1.2rem 0 1.4rem}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.p{color:var(--mut)}.p+.p{margin-top:1.2rem}
+.idx{border-top:1px solid var(--line);margin-top:3rem}
+.it{display:grid;grid-template-columns:110px 1fr 1.4fr 40px;gap:2rem;align-items:center;padding:2.2rem 0;border-bottom:1px solid var(--line);text-decoration:none;transition:.3s}
+.it:hover{padding-left:1.2rem;background:linear-gradient(90deg,#f6c21b14,transparent)}
+.it .n{font-family:Fraunces,serif;font-style:italic;font-size:3rem;color:var(--c,var(--gold));line-height:1}
+.it h3{font-family:Fraunces,serif;font-size:1.9rem;line-height:1.1}
+.it p{color:var(--mut);font-size:.97rem}
+.it .ar{color:var(--gold);font-size:1.4rem;transition:.3s}.it:hover .ar{transform:translateX(6px)}
+.idx>:nth-child(2){--c:var(--coral)}.idx>:nth-child(3){--c:var(--teal)}.idx>:nth-child(4){--c:var(--gold)}.idx>:nth-child(5){--c:var(--coral)}
+.paper{background:var(--cream);color:#2b0c0c;text-align:center;padding:7rem 0;position:relative;overflow:hidden}
+.paper::before,.paper::after{content:"";position:absolute;left:0;right:0;height:14px;background:radial-gradient(circle at 10px 0,var(--bg2) 7px,transparent 7.5px) 0 0/20px 14px repeat-x}
+.paper::before{top:0}.paper::after{bottom:0;transform:scaleY(-1)}
+.paper blockquote{font-size:clamp(2.8rem,8vw,7rem)}
+.paper blockquote i{color:#b3261e}
+.paper .m{color:#b3261e;margin-bottom:1.5rem;display:block}
+.glow{background:radial-gradient(60% 120% at 50% 0,#f6c21b2e,transparent 70%),#2b0c0c;border-top:1px solid var(--line)}
+.glow .w{text-align:center}
+.glow h2{font-size:clamp(2.6rem,7vw,5.5rem);margin-bottom:2.4rem}
+/* page header */
+.ph{position:relative;overflow:hidden;padding:7rem 0 5rem;border-bottom:1px solid var(--line);background:radial-gradient(50% 90% at 90% 0,var(--g,#b8432a55),transparent 70%),linear-gradient(170deg,#4a1111,#2b0c0c)}
+#initiatives .ph{--g:#f6c21b44}#events .ph{--g:#f0826a55}#join .ph{--g:#6fd0ba33}#contact .ph{--g:#f6c21b33}
+.ph h1{font-size:clamp(3.2rem,9vw,7.5rem);margin:1.4rem 0 1.4rem}
+.ph p{max-width:36rem;color:var(--mut);font-size:1.1rem}
+.big{font-family:Fraunces,serif;font-size:clamp(1.8rem,3.4vw,2.7rem);line-height:1.2}
+.big i{color:var(--gold)}
+.vals{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);margin-top:2.5rem}
+.vals div{padding:1.5rem 1rem 0 0;font-family:Fraunces,serif;font-size:1.5rem;line-height:1.15}
+.vals div span{display:block;font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.2em;color:var(--c,var(--gold));margin-bottom:.6rem}
+.vals div:nth-child(2){--c:var(--coral)}.vals div:nth-child(3){--c:var(--teal)}.vals div:nth-child(4){--c:var(--coral)}.vals div:nth-child(5){--c:var(--teal)}
+.blk{display:grid;grid-template-columns:100px 1fr 1fr;gap:2.5rem;padding:4rem 0;border-bottom:1px solid var(--line)}
+.blk .n{font-family:Fraunces,serif;font-style:italic;font-size:4.5rem;line-height:.9;color:var(--gold)}
+.blk:nth-child(2) .n{color:var(--teal)}
+.blk h2{font-size:clamp(2rem,3.6vw,3rem)}
+.blk ul{list-style:none;margin-top:1.4rem}
+.blk li{padding:.8rem 0;border-top:1px solid var(--line);color:var(--cream)}
+.blk li::before{content:"\2726";color:var(--gold);margin-right:.8rem}
+.dept{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);margin-top:2rem}
+.dept div{padding:2.2rem 1rem;border-bottom:1px solid var(--line);font-family:Fraunces,serif;font-size:clamp(1.8rem,3.4vw,2.8rem);line-height:1.1}
+.dept div:nth-child(even){border-left:1px solid var(--line);padding-left:2rem}
+.dept div span{display:block;font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.2em;color:var(--c);margin-bottom:.6rem}
+.dept div:nth-child(1){--c:var(--gold)}.dept div:nth-child(2){--c:var(--coral)}.dept div:nth-child(3){--c:var(--teal)}.dept div:nth-child(4){--c:var(--gold)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;margin-top:2.5rem}
+.steps div{border-top:2px solid var(--c);padding-top:1.3rem}
+.steps div:nth-child(1){--c:var(--gold)}.steps div:nth-child(2){--c:var(--coral)}.steps div:nth-child(3){--c:var(--teal)}
+.steps h3{font-family:Fraunces,serif;font-size:1.7rem;margin:.6rem 0}
+.steps p{color:var(--mut);font-size:.97rem}
+footer{border-top:1px solid var(--line);padding:4rem 0 2.5rem;color:var(--mut);font-size:.92rem;background:#140404}
+footer .w{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem}
+footer h4{font-family:'Space Mono',monospace;font-weight:400;font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+footer a{display:block;text-decoration:none;padding:.25rem 0}footer a:hover{color:var(--gold)}
+.copy{grid-column:1/-1;border-top:1px solid var(--line);padding-top:1.5rem;font-size:.78rem;opacity:.7}
+@media(max-width:860px){
+.burger{display:block}
+.links{display:none;position:absolute;left:0;right:0;top:76px;background:#1c0606f2;flex-direction:column;align-items:flex-start;padding:1.5rem 1.6rem 2rem;gap:1.2rem;border-bottom:1px solid var(--line)}
+.links.open{display:flex}
+.two,.blk,footer .w{grid-template-columns:1fr;gap:2rem}
+.it{grid-template-columns:60px 1fr 24px;gap:.4rem 1rem;padding:1.6rem 0}.it .n{font-size:2.2rem}.it p{grid-column:2/3}
+.vals,.steps{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr}
+.dept{grid-template-columns:1fr}.dept div:nth-child(even){border-left:0;padding-left:1rem}
+.emblem{width:100px;top:6%;right:5%}.sec{padding:4.5rem 0}.hero .w{padding-top:7rem}
+}
+.hero{background:linear-gradient(180deg,#2b0c0cdb 0%,#2b0c0c99 42%,#1c0606f5 100%),var(--hero,none) center 74%/cover,#2b0c0c}.bg-sun{display:none}
+.fig{margin:0;background:var(--cream);background-clip:padding-box;border:9px dotted var(--cream);color:#2b0c0c;box-shadow:0 24px 40px #0007;transition:transform .5s;cursor:zoom-in;transform:rotate(var(--r,0deg))}
+.fig:hover{transform:rotate(0) translateY(-6px)}
+.fig .im{display:block;width:100%;aspect-ratio:var(--a,4/3);background:#3a1313;overflow:hidden}
+.fig img{width:100%;height:100%;object-fit:cover;display:block}
+.fig figcaption{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;padding:.8rem .3rem .7rem}
+.mo{display:grid;grid-template-columns:5fr 3fr 4fr;gap:2.4rem;align-items:center;margin-top:3rem}
+.strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2.2rem;align-items:start;margin-bottom:4.5rem}
+.mas{columns:3;column-gap:1.8rem}.mas>div{break-inside:avoid;margin-bottom:1.8rem}.mas .im{aspect-ratio:auto}.mas img{height:auto}
+#gallery .ph{--g:#f0826a55}
+.lb{position:fixed;inset:0;background:#000d;z-index:60;display:none;align-items:center;justify-content:center;padding:2rem;cursor:zoom-out}.lb.on{display:flex}.lb img{max-width:100%;max-height:100%;box-shadow:0 0 60px #000}
+@media(max-width:860px){.mo{grid-template-columns:1fr}.mas{columns:2}}@media(max-width:520px){.mas{columns:1}}
+body::after{display:none}
+body{background:#2b0c0c}body::before{background:#2b0c0c}
+header{background:#2b0c0c;backdrop-filter:none;-webkit-backdrop-filter:none}
+.hero{background:#4a1414}
+.hero-ph{position:absolute;right:6%;bottom:9%;width:min(320px,26vw);z-index:2}
+.ph{background:#4a1414}#initiatives .ph{background:#14403a}#events .ph{background:#5c1f14}#join .ph{background:#3a1d4d}#gallery .ph{background:#5c1f14}
+.it:hover{background:#f6c21b12}
+.glow{background:var(--gold);color:#2b0c0c;border:0}.glow .m,.glow h2 i{color:#7a1a12}.glow .btn{background:#2b0c0c;border-color:#2b0c0c;color:var(--cream)}.glow .btn:hover{background:transparent;color:#2b0c0c}
+@media(max-width:1100px){.hero-ph{display:none}}
+.hero{background:linear-gradient(#2b0c0cbd,#2b0c0cbd),var(--i-banyan) center 62%/cover,#2b0c0c;min-height:92vh}
+.hero::after{content:"SCROLL";position:absolute;left:50%;bottom:1.4rem;transform:translateX(-50%);font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.35em;color:var(--gold);z-index:2}
+.tick{background:var(--gold);color:#2b0c0c;overflow:hidden;white-space:nowrap;padding:1rem 0;font-family:Fraunces,serif;font-style:italic;font-weight:600;font-size:1.35rem}
+.tick div{display:inline-block;animation:mq 40s linear infinite}.tick span{margin:0 1.6rem}.tick b{font-style:normal;font-size:.9rem}
+@keyframes mq{to{transform:translateX(-50%)}}
+#about .ph{background:linear-gradient(#4a1414d6,#4a1414d6),var(--i-team) center 22%/cover}
+#initiatives .ph{background:linear-gradient(#0f3a34d6,#0f3a34d6),var(--i-nirb) center 60%/cover}
+#events .ph{background:linear-gradient(#5c1f14d6,#5c1f14d6),var(--i-run) center 62%/cover}
+#join .ph{background:linear-gradient(#3a1d4dd6,#3a1d4dd6),var(--i-fest) center 40%/cover}
+#gallery .ph{background:linear-gradient(#5c1f14d6,#5c1f14d6),var(--i-garba) center 55%/cover}
+#contact .ph{background:linear-gradient(#4a1414d6,#4a1414d6),var(--i-banyan) center 70%/cover}
+.ph{padding:8rem 0 6rem}
+.glow{background:linear-gradient(#2b0c0cd1,#2b0c0cd1),var(--bgi,none) center/cover,#2b0c0c;color:var(--cream)}
+#home .glow{--bgi:var(--i-garba)}#join .glow{--bgi:var(--i-team)}
+.glow .m,.glow h2 i{color:var(--gold)}.glow .btn{background:var(--gold);border-color:var(--gold);color:#2b0c0c}.glow .btn:hover{background:transparent;color:var(--gold)}
+.glow{padding:9rem 0}
+@media(min-width:900px) and (hover:hover){.hero,.glow,.ph{background-attachment:scroll,fixed,scroll}}
+.links{gap:1.3rem}.links a{letter-spacing:.16em;font-size:.68rem}
+@media(max-width:1100px){.burger{display:block}.links{display:none;position:absolute;left:0;right:0;top:76px;background:#1c0606f2;flex-direction:column;align-items:flex-start;padding:1.5rem 1.6rem 2rem;gap:1.2rem;border-bottom:1px solid var(--line)}.links.open{display:flex}}
+#team .ph{background:linear-gradient(#4a1414d6,#4a1414d6),var(--i-team) center 28%/cover}#admin .ph{background:#14403a}
+.bn{background:var(--coral);color:#2b0c0c;font-size:.92rem;font-weight:700}.bn .lv{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;padding-top:.7rem;padding-bottom:.7rem}.bn a{color:#2b0c0c}
+.tabs{display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:2.5rem;border-bottom:1px solid var(--line)}
+.tabs button{background:none;border:0;border-bottom:3px solid transparent;color:var(--mut);font-family:'Space Mono',monospace;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;padding:1rem 1.2rem;cursor:pointer}
+.tabs button.on{color:var(--gold);border-color:var(--gold)}.tabs i{font-style:normal;background:var(--coral);color:#2b0c0c;border-radius:999px;padding:0 .5rem;margin-left:.5rem;font-size:.65rem}
+.hold{display:grid;gap:2rem;grid-template-columns:repeat(4,1fr)}.hold.top{grid-template-columns:1fr 1fr;max-width:860px;margin-bottom:2.5rem}
+.pc .fr{background:var(--cream);background-clip:padding-box;border:9px dotted var(--cream);padding:10px;color:#2b0c0c;transform:rotate(var(--r,0deg));box-shadow:0 20px 34px #0006}
+.ph2{aspect-ratio:4/5;background:#4a1414;display:grid;place-items:center;overflow:hidden}.ph2 img{width:100%;height:100%;object-fit:cover}.ph2 b{font-family:Fraunces,serif;font-size:5rem;color:var(--gold)}
+.nm{font-family:Fraunces,serif;font-weight:700;font-size:1.15rem;padding:.8rem .2rem 0;line-height:1.15}.hold.top .nm{font-size:1.6rem}
+.rl{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:#7a1a12;padding:.3rem .2rem .5rem}
+.lst{border-top:1px solid var(--line)}.li{display:grid;grid-template-columns:1.3fr 1.2fr 1fr;gap:1rem;padding:1.1rem 0;border-bottom:1px solid var(--line);align-items:center}
+.li b{font-family:Fraunces,serif;font-size:1.25rem}.li span{color:var(--mut);font-size:.95rem}
+.fm{display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:780px;margin:1.5rem 0 2.5rem}.fm .f{grid-column:1/-1}
+.fm label{display:grid;gap:.4rem;font-family:'Space Mono',monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.fm input,.fm select,.fm textarea{width:100%;background:#1c0606;border:1px solid var(--line);color:var(--cream);padding:.85rem 1rem;font:inherit;font-size:1rem;letter-spacing:0;text-transform:none;border-radius:2px}
+.fm .chk{display:flex;align-items:center;gap:.6rem}.fm .chk input{width:auto}.fm button{justify-self:start;cursor:pointer}
+.dt{border:1px solid var(--line);padding:1.2rem 1.5rem;max-width:820px}.dt summary{cursor:pointer;font-family:Fraunces,serif;font-size:1.25rem}
+.sm{background:none;border:1px solid var(--line);color:var(--cream);padding:.4rem .9rem;border-radius:999px;font-size:.78rem;cursor:pointer}.sm.ok{border-color:var(--teal);color:var(--teal)}.sm.no{border-color:var(--coral);color:var(--coral)}
+.ab{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem}.sm3{font-size:1.6rem;margin:2rem 0 1rem}
+.gt{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1rem}.gt div{display:grid;gap:.5rem}.gt img{width:100%;aspect-ratio:1;object-fit:cover}
+#toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--cream);color:#2b0c0c;padding:.9rem 1.5rem;border-radius:999px;z-index:70;display:none;font-weight:700;max-width:90vw}
+@media(max-width:860px){.hold,.hold.top{grid-template-columns:1fr 1fr}.li,.fm{grid-template-columns:1fr}}
+.burger{display:none!important}
+.tabs{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}.tabs button{flex:none;white-space:nowrap}
+.fac{display:grid;grid-template-columns:230px 1fr;gap:2.5rem;padding:2.5rem 0;border-bottom:1px solid var(--line);align-items:start}
+@media(max-width:1100px){.nav{height:auto;flex-wrap:wrap;row-gap:.1rem;padding-top:.8rem;padding-bottom:.1rem}.brand{flex:1}.links,.links.open{display:flex;position:relative;flex:0 0 100%;order:3;flex-direction:row;align-items:center;background:none;padding:.3rem 0 .7rem;border:0;gap:1.6rem;overflow-x:auto;white-space:nowrap;scrollbar-width:none;-webkit-overflow-scrolling:touch}.links::-webkit-scrollbar{display:none}.links a{flex:none;font-size:.72rem;padding:.5rem 0}}
+@media(max-width:700px){.fac{grid-template-columns:1fr}.fac .pc{max-width:230px}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs><symbol id="sun" viewBox="-50 -50 100 100"><g fill="#f6c21b" stroke="#7a1a12" stroke-width="1"><ellipse cy="-33" rx="7" ry="15"/><ellipse cy="-33" rx="7" ry="15" transform="rotate(30)"/><ellipse cy="-33" rx="7" ry="15" transform="rotate(60)"/><ellipse cy="-33" rx="7" ry="15" transform="rotate(90)"/><ellipse cy="-33" rx="7" ry="15" transform="rotate(120)"/><ellipse cy="-33" rx="7" ry="15" transform="rotate(150)"/><ellipse cy="-33" rx="7" ry="15" transform="rotate(180)"/><ellipse cy="-33" rx="7" ry="15" transform="rotate(210)"/><ellipse cy="-33" rx="7" ry="15" transform="rotate(240)"/><ellipse cy="-33" rx="7" ry="15" transform="rotate(270)"/><ellipse cy="-33" rx="7" ry="15" transform="rotate(300)"/><ellipse cy="-33" rx="7" ry="15" transform="rotate(330)"/></g><circle r="19" fill="#3a1d0e"/><circle r="12" fill="none" stroke="#9a6030" stroke-width="1.5" stroke-dasharray="2 3"/></symbol></defs></svg>
+
+<header><div class="w nav">
+<a class="brand" href="#home"><svg><use href="#sun"/></svg><div><b>Youth For A Cause</b><span>JSS GROUP OF INSTITUTIONS</span></div></a>
+
+<nav class="links" id="lk"><a href="#about">About</a><a href="#initiatives">Initiatives</a><a href="#events">Events</a><a href="#team">Team</a><a href="#gallery">Gallery</a><a href="#join">Join</a><a href="#contact">Contact</a><a class="pill" href="https://www.instagram.com/yfacjssaten" target="_blank" rel="noopener">@yfacjssaten</a></nav>
+</div></header>
+
+<div id="live"></div>
+<div id="toast"></div>
+<main>
+<section class="page" id="home">
+<div class="hero">
+<svg class="bg-sun" viewBox="-50 -50 100 100"><use href="#sun"/></svg>
+<svg class="emblem" viewBox="0 0 200 200"><g class="ring"><defs><path id="cp" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs><text><textPath href="#cp">NOT FOR FAME • FOR IMPACT • YOUTH FOR A CAUSE •</textPath></text></g><g transform="translate(100 100)"><circle r="42" fill="#2b0c0c" stroke="#f6c21b" stroke-width="1"/><svg x="-34" y="-34" width="68" height="68" viewBox="-50 -50 100 100"><use href="#sun"/></svg></g></svg>
+<div class="hero-ph"><div class="rv"><figure class="fig" style="--r:2.5deg;--a:1000/750"><div class="im"><img data-k="team" alt="The YFAC family" width="1000" height="750"></div><figcaption>The YFAC family</figcaption></figure></div></div>
+<div class="w">
+<span class="m">Youth For A Cause · JSS Group of Institutions</span>
+<h1 class="s">Turning <i>Compassion</i> into Action.</h1>
+<p>A student-led social initiative driven by the belief that young people have the power to create meaningful change, bridging the gap between caring about social issues and taking action.</p>
+<div class="btns"><a class="btn" href="#initiatives">Explore our initiatives ↗</a><a class="btn o" href="#events">View events</a></div>
+</div></div>
+
+<div class="tick"><div><span>Not for fame, for impact</span><b>✦</b><span>Small acts, collective effort</span><b>✦</b><span>Be a part of YFAC</span><b>✦</b><span>Not for fame, for impact</span><b>✦</b><span>Small acts, collective effort</span><b>✦</b><span>Be a part of YFAC</span><b>✦</b><span>Not for fame, for impact</span><b>✦</b><span>Small acts, collective effort</span><b>✦</b><span>Be a part of YFAC</span><b>✦</b><span>Not for fame, for impact</span><b>✦</b><span>Small acts, collective effort</span><b>✦</b><span>Be a part of YFAC</span><b>✦</b></div></div>
+<div class="sec"><div class="w two">
+<div class="rv"><span class="m">01 — Who we are</span><h2 class="h2 s">Small acts. <i>Collective effort.</i></h2></div>
+<div class="rv"><p class="p">We believe change begins with small acts of kindness, collective effort, and a willingness to make a difference. Through social drives, community outreach and creative initiatives, we encourage students to step beyond classrooms.</p><p class="p">YFAC is more than a student society. It is a community that brings people together to create change, build connections, and make every effort count.</p><br><a class="btn o" href="#about">Our story</a></div>
+</div></div>
+
+<div class="sec" style="padding-top:0"><div class="w">
+<span class="m rv">02 — What we do</span>
+<div class="idx rv">
+<span></span>
+<a class="it" href="#initiatives"><span class="n">01</span><h3>Social outreach</h3><p>NGO visits, tree plantation drives and renovation projects that create impact beyond campus.</p><span class="ar">→</span></a>
+<a class="it" href="#initiatives"><span class="n">02</span><h3>Creative and cultural</h3><p>Artistic activities and collaborative projects that build teamwork, leadership and belonging.</p><span class="ar">→</span></a>
+<a class="it" href="#events"><span class="n">03</span><h3>Events and competitions</h3><p>Team-based events combining creativity, problem-solving and friendly competition.</p><span class="ar">→</span></a>
+</div></div></div>
+
+<div class="sec" style="padding-top:0"><div class="w"><span class="m rv">03 — Moments</span><h2 class="h2 s rv">Impact, <i>in frames</i></h2><div class="mo"><div class="rv"><figure class="fig" style="--r:-1.5deg;--a:1000/667;"><div class="im"><img data-k="nirb" alt="Nirbhed Foundation visit" width="1000" height="667"></div><figcaption>Nirbhed Foundation visit</figcaption></figure></div><div class="rv"><figure class="fig" style="--r:2deg;--a:750/1000;"><div class="im"><img data-k="garbap" alt="Garba Eve" width="750" height="1000"></div><figcaption>Garba Eve</figcaption></figure></div><div class="rv"><figure class="fig" style="--r:-1deg;--a:1000/750;"><div class="im"><img data-k="run" alt="Zone Mile" width="1000" height="750"></div><figcaption>Zone Mile</figcaption></figure></div></div><p style="margin-top:3.5rem"><a class="btn o" href="#gallery">Open the gallery</a></p></div></div>
+
+<div class="paper"><div class="w rv"><span class="m">Our belief</span><blockquote class="s">Not for fame, <i>for impact.</i></blockquote></div></div>
+
+<div class="sec"><div class="w">
+<span class="m rv">04 — Signature events</span><h2 class="h2 s rv">Where purpose <i>meets play</i></h2>
+<div class="idx rv"><span></span>
+<a class="it" href="#events"><span class="n">01</span><h3>Pod Graffiti</h3><p>Teams transform their designated pods with colourful artwork and imaginative designs.</p><span class="ar">→</span></a>
+<a class="it" href="#events"><span class="n">02</span><h3>Treasure Valley</h3><p>A treasure-hunt-style event testing observation, teamwork and problem-solving.</p><span class="ar">→</span></a>
+<a class="it" href="#events"><span class="n">03</span><h3>React Rumble</h3><p>An orientation-time competition where participants compete for audience likes.</p><span class="ar">→</span></a>
+</div></div></div>
+
+<div class="sec glow"><div class="w"><span class="m">Be a part of YFAC</span><h2 class="s" style="margin-top:1.2rem">Ready to make every <i>effort count?</i></h2><a class="btn" href="#join">Join the family ↗</a></div></div>
+</section>
+
+<section class="page" id="about">
+<div class="ph"><div class="w"><span class="m">About</span><h1 class="s">More than a <i>society.</i></h1><p>A community that brings people together to create change, build connections, and make every effort count.</p></div></div>
+<div class="sec"><div class="w">
+<div class="two"><p class="big rv">We aim to bridge the gap between <i>caring</i> about social issues and <i>taking action</i> to address them.</p>
+<div class="rv"><p class="p">Youth For A Cause (YFAC) is a student-led social initiative at JSS Group of Institutions, driven by the belief that young people have the power to create meaningful change.</p><p class="p">Through social drives, community outreach and creative initiatives, we encourage students to step beyond classrooms and contribute to a more compassionate and responsible society.</p></div></div>
+<div style="margin-top:5rem;max-width:920px;margin-left:auto;margin-right:auto"><div class="rv"><figure class="fig" style="--r:0deg;--a:1000/750;"><div class="im"><img data-k="team" alt="The YFAC family" width="1000" height="750"></div><figcaption>The YFAC family</figcaption></figure></div></div><div style="margin-top:6rem" class="rv"><span class="m">What we stand for</span>
+<div class="vals"><div><span>01</span>Empathy</div><div><span>02</span>Integrity</div><div><span>03</span>Unity</div><div><span>04</span>Mutual respect</div><div><span>05</span>Meaningful participation</div></div>
+<p class="p" style="margin-top:2.5rem;max-width:40rem">We believe in quality over quantity, genuine involvement over recognition, and collective action over individual achievement.</p></div>
+</div></div>
+</section>
+
+<section class="page" id="initiatives">
+<div class="ph"><div class="w"><span class="m">Initiatives</span><h1 class="s">What we <i>do.</i></h1><p>Two strands of work, one purpose: students stepping beyond the classroom.</p></div></div>
+<div class="sec" style="padding-top:3rem"><div class="w"><div class="strip"><div class="rv"><figure class="fig" style="--r:-1deg;--a:1000/667;"><div class="im"><img data-k="nirb" alt="Nirbhed Foundation visit" width="1000" height="667"></div><figcaption>Nirbhed Foundation visit</figcaption></figure></div><div class="rv"><figure class="fig" style="--r:1deg;--a:1000/667;"><div class="im"><img data-k="teach" alt="Working with children" width="1000" height="667"></div><figcaption>Working with children</figcaption></figure></div><div class="rv"><figure class="fig" style="--r:-1deg;--a:1000/667;"><div class="im"><img data-k="draw" alt="Drawing together" width="1000" height="667"></div><figcaption>Drawing together</figcaption></figure></div></div>
+<div class="blk rv"><div class="n">01</div><h2 class="s">Social outreach and community development</h2><div><p class="p">We organize and participate in initiatives that create meaningful impact beyond campus, giving students the chance to engage with communities, support those in need and contribute to a better environment.</p><ul><li>NGO visits and collaborations</li><li>Tree plantation drives</li><li>Renovation projects</li><li>Other community service activities</li></ul></div></div>
+<div class="blk rv"><div class="n">02</div><h2 class="s">Creative and cultural engagement</h2><div><p class="p">We believe creativity can bring people together and inspire participation. Through artistic activities, collaborative projects and campus initiatives, students express themselves while building teamwork, leadership and a sense of belonging.</p></div></div>
+<div class="strip" style="margin-top:4.5rem"><div class="rv"><figure class="fig" style="--r:-1deg;--a:750/1000"><div class="im"><img data-k="mural" alt="Mural painting" width="750" height="1000"></div><figcaption>Mural painting</figcaption></figure></div><div class="rv"><figure class="fig" style="--r:1deg;--a:1000/750"><div class="im"><img data-k="fest" alt="Festooning crew" width="1000" height="750"></div><figcaption>Festooning crew</figcaption></figure></div><div class="rv"><figure class="fig" style="--r:-1deg;--a:562/1000"><div class="im"><img data-k="ladder" alt="Mural painting" width="562" height="1000"></div><figcaption>Mural painting</figcaption></figure></div></div></div></div>
+</section>
+
+<section class="page" id="events">
+<div class="ph"><div class="w"><span class="m">Events and competitions</span><h1 class="s">Play with a <i>purpose.</i></h1><p>Team-based events that combine creativity, problem-solving, knowledge and friendly competition.</p></div></div>
+<div class="sec" style="padding-top:2rem"><div class="w"><div class="strip"><div class="rv"><figure class="fig" style="--r:-1deg;--a:1000/750;"><div class="im"><img data-k="run" alt="Zone Mile" width="1000" height="750"></div><figcaption>Zone Mile</figcaption></figure></div><div class="rv"><figure class="fig" style="--r:1deg;--a:1000/750;"><div class="im"><img data-k="garba" alt="Garba Eve" width="1000" height="750"></div><figcaption>Garba Eve</figcaption></figure></div><div class="rv"><figure class="fig" style="--r:-1deg;--a:1000/750;"><div class="im"><img data-k="art1" alt="Festooning workshop" width="1000" height="750"></div><figcaption>Festooning workshop</figcaption></figure></div></div>
+<div class="idx rv" style="margin-top:0"><span></span>
+<div class="it" style="grid-template-columns:110px 1fr 1.4fr"><span class="n">01</span><h3>Pod Graffiti</h3><p>A creative team competition where participants transform their designated pods with colourful artwork, imaginative designs and collaborative creativity.</p></div>
+<div class="it" style="grid-template-columns:110px 1fr 1.4fr"><span class="n">02</span><h3>Treasure Valley</h3><p>A treasure-hunt-style event where teams explore locations and search for clues or items, testing observation, teamwork and problem-solving.</p></div>
+<div class="it" style="grid-template-columns:110px 1fr 1.4fr"><span class="n">03</span><h3>Lifestyle Puzzles</h3><p>A challenge that encourages participants to think logically, solve puzzles and work together to find solutions.</p></div>
+<div class="it" style="grid-template-columns:110px 1fr 1.4fr"><span class="n">04</span><h3>Beyblade</h3><p>A competitive and entertaining event where participants put their Beyblade skills to the test in friendly battles.</p></div>
+<div class="it" style="grid-template-columns:110px 1fr 1.4fr"><span class="n">05</span><h3>React Rumble</h3><p>Conducted during orientation, this interactive competition challenges participants to answer questions across topics and compete for the most audience likes.</p></div>
+<div class="it" style="grid-template-columns:110px 1fr 1.4fr"><span class="n">06</span><h3>Zone Mile: Run for a Cause</h3><p>A campus run where students come together for a cause. Same route, different stories. Run together, go further.</p></div>
+</div>
+<p class="p rv" style="margin-top:3rem;max-width:40rem">These events help students connect, discover their strengths, and experience teamwork alongside the social purpose that defines YFAC.</p>
+</div></div>
+</section>
+
+<section class="page" id="join">
+<div class="ph"><div class="w"><span class="m">Recruitment</span><h1 class="s">Join the <i>family.</i></h1><p>We welcome students who are eager to learn, contribute, collaborate and turn their ideas into action.</p></div></div>
+<div class="sec"><div class="w">
+<span class="m rv">Departments</span>
+<div class="dept rv"><div><span>01</span>Design and Social Media</div><div><span>02</span>Art and Festooning</div><div><span>03</span>Management</div><div><span>04</span>Editorial</div></div>
+<div class="strip" style="margin-top:5rem"><div class="rv"><figure class="fig" style="--r:-1.5deg;--a:562/1000;"><div class="im"><img data-k="recruit" alt="Recruitment drive" width="562" height="1000"></div><figcaption>Recruitment drive</figcaption></figure></div><div class="rv"><figure class="fig" style="--r:1.5deg;--a:750/1000;"><div class="im"><img data-k="lunch" alt="Team lunch" width="750" height="1000"></div><figcaption>Team lunch</figcaption></figure></div><div class="rv"><figure class="fig" style="--r:-1deg;--a:750/1000;"><div class="im"><img data-k="paint1" alt="Art session" width="750" height="1000"></div><figcaption>Art session</figcaption></figure></div></div><div class="strip"><div class="rv"><figure class="fig" style="--r:-1deg;--a:1000/447"><div class="im"><img data-k="class1" alt="Recruitment drive, classroom visit" width="1000" height="447"></div><figcaption>Recruitment drive, classroom visit</figcaption></figure></div><div class="rv"><figure class="fig" style="--r:1deg;--a:1000/750"><div class="im"><img data-k="class2" alt="Recruitment drive, classroom visit" width="1000" height="750"></div><figcaption>Recruitment drive, classroom visit</figcaption></figure></div></div><div style="margin-top:2rem" class="rv"><span class="m">How it works</span>
+<div class="steps"><div><span class="m" style="color:var(--c)">Step 01</span><h3>Follow our updates</h3><p>Dates, mode and timings for each cycle are announced on Instagram.</p></div>
+<div><span class="m" style="color:var(--c)">Step 02</span><h3>Aptitude test</h3><p>The first round, usually conducted online.</p></div>
+<div><span class="m" style="color:var(--c)">Step 03</span><h3>Personal interview</h3><p>Meet the team and tell us what you want to change.</p></div></div></div>
+</div></div>
+<div class="sec glow"><div class="w"><span class="m">Be a part of YFAC</span><h2 class="s" style="margin-top:1.2rem">Not for fame, <i>for impact.</i></h2><a class="btn" href="https://www.instagram.com/yfacjssaten" target="_blank" rel="noopener">Follow @yfacjssaten ↗</a></div></div>
+</section>
+
+<section class="page" id="gallery">
+<div class="ph"><div class="w"><span class="m">Gallery</span><h1 class="s">Moments that <i>matter.</i></h1><p>From NGO visits and art sessions to marathons and Garba nights. A look at life at YFAC.</p></div></div>
+<div class="sec" style="padding-top:4rem"><div class="w"><div class="mas" id="gal"></div></div></div>
+</section>
+
+<section class="page" id="team">
+<div class="ph"><div class="w"><span class="m">Team</span><h1 class="s">The people <i>behind YFAC.</i></h1><p>The post holders leading YFAC this year, our current members, and the alumni who built the society.</p></div></div>
+<div class="sec" style="padding-top:4rem"><div class="w" id="teamBody"></div></div>
+</section>
+
+<section class="page" id="admin">
+<div class="ph"><div class="w"><span class="m">Admin</span><h1 class="s">Control <i>room.</i></h1><p>Post holders, members, alumni, live announcements and the gallery are managed here.</p></div></div>
+<div class="sec" style="padding-top:4rem"><div class="w" id="adminBody"></div></div>
+</section>
+
+<section class="page" id="contact">
+<div class="ph"><div class="w"><span class="m">Contact</span><h1 class="s">Let’s <i>talk.</i></h1><p>Questions, collaborations or NGO partnerships? Reach out to us.</p></div></div>
+<div class="sec"><div class="w two">
+<div class="rv"><span class="m">Instagram</span><p class="big" style="margin:1rem 0 2rem"><i>@yfacjssaten</i></p><a class="btn" href="https://www.instagram.com/yfacjssaten" target="_blank" rel="noopener">Message us ↗</a></div>
+<div class="rv"><span class="m">Find us</span><p class="big" style="margin:1rem 0">Youth For A Cause,<br>JSS Group of Institutions</p><p class="p">The fastest way to reach the team is a direct message on Instagram.</p></div>
+</div></div>
+</section>
+</main>
+
+<footer><div class="w">
+<div><div class="brand" style="margin-bottom:1rem"><svg><use href="#sun"/></svg><div><b style="color:var(--cream)">Youth For A Cause</b><span>NOT FOR FAME, FOR IMPACT</span></div></div></div>
+<div><h4>Explore</h4><a href="#about">About</a><a href="#initiatives">Initiatives</a><a href="#team">Team</a><a href="#events">Events</a><a href="#gallery">Gallery</a></div>
+<div><h4>Connect</h4><a href="#join">Join YFAC</a><a href="#contact">Contact</a><a href="#admin">Admin</a><a href="#" data-act="alerts">Get notifications</a><a href="https://www.instagram.com/yfacjssaten" target="_blank" rel="noopener">Instagram</a></div>
+<div class="copy">© Youth For A Cause · JSS Group of Institutions</div>
+</div></footer>
+
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<div class="lb" id="lb"><img alt=""></div>
+<script>
+var IMG={"banyan": "img/banyan.jpg", "team": "img/team.jpg", "talk": "img/talk.jpg", "pan": "img/pan.jpg", "skit": "img/skit.jpg", "paint1": "img/paint1.jpg", "paint2": "img/paint2.jpg", "teach": "img/teach.jpg", "draw": "img/draw.jpg", "nirb": "img/nirb.jpg", "lunch": "img/lunch.jpg", "warm": "img/warm.jpg", "road": "img/road.jpg", "runp": "img/runp.jpg", "run": "img/run.jpg", "recruit": "img/recruit.jpg", "art1": "img/art1.jpg", "art2": "img/art2.jpg", "garba": "img/garba.jpg", "garbap": "img/garbap.jpg", "paint3": "img/paint3.jpg", "class1": "img/class1.jpg", "class2": "img/class2.jpg", "fest": "img/fest.jpg", "mural": "img/mural.jpg", "ladder": "img/ladder.jpg"};
+document.querySelectorAll("img[data-k]").forEach(function(i){i.src=IMG[i.dataset.k]});
+Object.keys(IMG).forEach(function(k){document.documentElement.style.setProperty("--i-"+k,"url("+IMG[k]+")")});
+var lb=document.getElementById("lb");
+document.addEventListener("click",function(e){var t=e.target;if(t.closest&&t.closest(".fig")&&t.tagName=="IMG"){lb.firstChild.src=t.src;lb.classList.add("on")}else if(lb.classList.contains("on")){lb.classList.remove("on")}});
+var DEFG=[{"id": "b0", "k": "nirb", "cap": "Nirbhed Foundation visit"}, {"id": "b1", "k": "teach", "cap": "Working with children"}, {"id": "b2", "k": "draw", "cap": "Drawing together"}, {"id": "b3", "k": "banyan", "cap": "Drawing session under the banyan"}, {"id": "b4", "k": "team", "cap": "The YFAC family"}, {"id": "b5", "k": "talk", "cap": "Introducing YFAC on stage"}, {"id": "b6", "k": "pan", "cap": "JSS Panchayat"}, {"id": "b7", "k": "skit", "cap": "On stage"}, {"id": "b8", "k": "paint1", "cap": "Art session"}, {"id": "b9", "k": "art1", "cap": "Festooning workshop"}, {"id": "b10", "k": "paint2", "cap": "Art session"}, {"id": "b11", "k": "art2", "cap": "Festooning workshop"}, {"id": "b12", "k": "garbap", "cap": "Garba Eve"}, {"id": "b13", "k": "garba", "cap": "Garba Eve"}, {"id": "b14", "k": "run", "cap": "Zone Mile"}, {"id": "b15", "k": "runp", "cap": "Zone Mile"}, {"id": "b16", "k": "warm", "cap": "Zone Mile warm-up"}, {"id": "b17", "k": "road", "cap": "Zone Mile, race morning"}, {"id": "b18", "k": "lunch", "cap": "Team lunch"}, {"id": "b19", "k": "recruit", "cap": "Recruitment drive"}, {"id": "b20", "k": "mural", "cap": "Mural painting"}, {"id": "b21", "k": "ladder", "cap": "Mural painting"}, {"id": "b22", "k": "fest", "cap": "Festooning crew"}, {"id": "b23", "k": "paint3", "cap": "Festooning workshop"}, {"id": "b24", "k": "class1", "cap": "Recruitment drive, classroom visit"}, {"id": "b25", "k": "class2", "cap": "Recruitment drive, classroom visit"}],TAB={team:'ph',admin:'ann'},CUR='',ROLE='visitor',EDIT={t:'',item:null},KEEP=/^(img\/|data:|https?:)/;
+var TABLE={ann:'announcements',ph:'post_holders',fac:'faculty',mem:'members',alu:'alumni',gal:'gallery'};
+var S={announcements:[],post_holders:[],faculty:[],members:[],alumni:[],requests:[],gallery:[]};
+function $(s){return document.querySelector(s)}
+function esc(t){return String(t==null?'':t).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function nl(t){return esc(t).replace(/\n/g,'<br>')}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
+function sl(u){return /^https?:\/\//i.test(u||'')?esc(u):''}
+function toast(t){var e=$('#toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(function(){e.style.display='none'},3800)}
+function shrink(f,max){return new Promise(function(ok){var r=new FileReader();r.onload=function(){var i=new Image();i.onload=function(){var s=Math.min(1,max/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=Math.round(i.width*s);c.height=Math.round(i.height*s);c.getContext('2d').drawImage(i,0,0,c.width,c.height);c.toBlob(ok,'image/jpeg',.8)};i.src=r.result};r.readAsDataURL(f)})}
+function b64(b){return new Promise(function(ok){var r=new FileReader();r.onload=function(){ok(r.result)};r.readAsDataURL(b)})}
+function u8(s){var p='='.repeat((4-s.length%4)%4),r=atob((s+p).replace(/-/g,'+').replace(/_/g,'/')),o=new Uint8Array(r.length);for(var i=0;i<r.length;i++)o[i]=r.charCodeAt(i);return o}
+/* ---------- Demo data layer (browser only). Used when config.js has no Supabase keys ---------- */
+function localAPI(){var K='yfac3',PIN={admin:'yfac-admin',member:'yfac-member'},D;
+function ld(){if(D)return D;try{D=JSON.parse(localStorage.getItem(K)||'null')}catch(x){}
+if(!D)D={announcements:[],post_holders:['President','CTC','Co-CTC','Vice President','General Secretary','Management Head','Secretary Head'].map(function(t,i){return {id:'p'+i,role:t,name:'Add name in Admin',year:'2026–27',pri:i+1}}),faculty:[{id:'f1',name:'Add faculty name in Admin',post:'Faculty Coordinator',descr:'Add a short description of the faculty member here.',pri:1}],members:[{id:'m1',name:'Demo Member',dept:'Design and Social Media',year:'2nd year'},{id:'m2',name:'Demo Member',dept:'Management',year:'1st year'}],alumni:[{id:'a1',name:'Demo Alumnus',batch:'2024',org:'Add current role'}],requests:[],gallery:DEFG.slice()};
+return D}
+function sv(){try{localStorage.setItem(K,JSON.stringify(D))}catch(x){toast('Browser storage is full. Remove a few photos.')}}
+function rl(){try{return sessionStorage.getItem('yfac_role')||'visitor'}catch(x){return 'visitor'}}
+return {live:false,
+boot:async function(){ld();return rl()},
+login:async function(r,p){if(PIN[r]&&PIN[r]===p){try{sessionStorage.setItem('yfac_role',r)}catch(x){}return}throw new Error('Wrong PIN')},
+logout:async function(){try{sessionStorage.removeItem('yfac_role')}catch(x){}},
+load:async function(){return JSON.parse(JSON.stringify(ld()))},
+save:async function(t,o,f){ld();if(f)o.photo_path=await b64(await shrink(f,t=='gallery'?1000:700));var a=D[t],i=o.id?a.findIndex(function(x){return x.id==o.id}):-1;if(i>=0)Object.assign(a[i],o);else{o.id=uid();a.unshift(o)}sv()},
+del:async function(t,x){ld();D[t]=D[t].filter(function(y){return y.id!=x.id});sv()},
+ask:async function(o){ld();o.id=uid();D.requests.push(o);sv()},
+review:async function(id,ok){ld();var q=D.requests.filter(function(x){return x.id==id})[0];if(!q)return;if(rl()!='admin'&&q.kind!='alumni')throw new Error('Only the admin approves members');D.requests=D.requests.filter(function(x){return x.id!=id});if(ok){if(q.kind=='member')D.members.push({id:uid(),name:q.name,dept:q.dept,year:q.year,contact:q.contact});else D.alumni.push({id:uid(),name:q.name,batch:q.year,org:q.org,contact:q.contact})}sv()},
+reset:async function(){ld();D.gallery=DEFG.slice();sv()},
+notify:async function(a){if(window.Notification&&Notification.permission==='granted')new Notification('YFAC: '+a.title,{body:a.txt||''})},
+subscribe:async function(){if(!window.Notification)throw new Error('Notifications are not supported here');if(await Notification.requestPermission()!=='granted')throw new Error('Notifications are blocked')},
+profiles:async function(){return []},setRole:async function(){}}}
+/* ---------- Live data layer: Supabase (free plan). Needs url, anon key and vapid in config.js ---------- */
+function remoteAPI(C){var sb=supabase.createClient(C.url,C.anon,{auth:{flowType:'pkce'}}),R='visitor';
+function pub(p){return sb.storage.from('photos').getPublicUrl(p).data.publicUrl}
+function T(x){if(x.error)throw x.error;return x.data||[]}
+return {live:true,url:pub,
+boot:async function(){var s=(await sb.auth.getSession()).data.session;if(!s)return R='visitor';var r=await sb.from('profiles').select('role').eq('id',s.user.id).maybeSingle();return R=r.data?r.data.role:'visitor'},
+login:async function(){try{sessionStorage.setItem('yfac_next','#admin')}catch(x){}T(await sb.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+location.pathname}}))},
+logout:async function(){await sb.auth.signOut();R='visitor'},
+load:async function(){var rv=R=='member'||R=='admin',q=[sb.from('announcements').select('*').eq('active',true).order('created_at',{ascending:false}),sb.from('post_holders').select('*').order('pri'),sb.from('faculty').select('*').order('pri'),sb.from('members_public').select('*').order('name'),sb.from('alumni_public').select('*').order('name'),sb.from('gallery').select('*').order('created_at',{ascending:false})];if(rv)q.push(sb.from('requests').select('*').eq('status','pending').order('created_at'));var a=await Promise.all(q);return {announcements:T(a[0]),post_holders:T(a[1]),faculty:T(a[2]),members:T(a[3]),alumni:T(a[4]),gallery:T(a[5]),requests:rv?T(a[6]):[]}},
+save:async function(t,o,f){if(f){var p=t+'/'+uid()+'.jpg',u=await sb.storage.from('photos').upload(p,await shrink(f,t=='gallery'?1400:800),{contentType:'image/jpeg'});if(u.error)throw u.error;o.photo_path=p}T(o.id?await sb.from(t).update(o).eq('id',o.id):await sb.from(t).insert(o))},
+del:async function(t,x){T(await sb.from(t).delete().eq('id',x.id));if(x.photo_path&&!KEEP.test(x.photo_path))sb.storage.from('photos').remove([x.photo_path])},
+ask:async function(o){T(await sb.from('requests').insert(o))},
+review:async function(id,ok){T(await sb.rpc('approve_request',{req:id,ok:ok}))},
+notify:async function(a){var r=await sb.functions.invoke('notify',{body:a});if(r.error)throw r.error},
+subscribe:async function(){if(!('serviceWorker' in navigator)||!('PushManager' in window))throw new Error('This browser does not support push notifications');if(await Notification.requestPermission()!=='granted')throw new Error('Notifications are blocked');var reg=await navigator.serviceWorker.register('sw.js');await navigator.serviceWorker.ready;var s=await reg.pushManager.getSubscription()||await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:u8(C.vapid)}),j=s.toJSON(),r=await sb.from('push_subscriptions').insert({endpoint:j.endpoint,p256dh:j.keys.p256dh,auth:j.keys.auth});if(r.error&&r.error.code!=='23505')throw r.error},
+profiles:async function(){return T(await sb.from('profiles').select('*').order('created_at'))},
+setRole:async function(id,r){T(await sb.from('profiles').update({role:r}).eq('id',id))}}}
+var API=(window.YFAC_CONFIG&&YFAC_CONFIG.url&&window.supabase)?remoteAPI(YFAC_CONFIG):localAPI();
+/* ---------- Rendering ---------- */
+function src(x){return x.photo_path?(KEEP.test(x.photo_path)?x.photo_path:API.url(x.photo_path)):(x.k?IMG[x.k]:'')}
+function banner(){var h=S.announcements.map(function(a){return '<div class="bn"><div class="w lv"><span>● LIVE · '+esc(a.type)+'</span><span>'+esc(a.title)+(a.txt?' — '+esc(a.txt):'')+'</span>'+(sl(a.link)?'<a href="'+sl(a.link)+'" target="_blank" rel="noopener">Open ↗</a>':'')+'</div></div>'}).join('');
+if(S.announcements.length&&window.Notification&&Notification.permission==='default')h+='<div class="bn" style="background:var(--gold)"><div class="w lv"><span>Get alerts for new recruitments and events</span><button class="sm" style="color:#2b0c0c;border-color:#2b0c0c" data-act="alerts">Enable notifications</button></div></div>';
+$('#live').innerHTML=h}
+function card(p,i){return '<div class="pc" style="--r:'+(i%2?1.5:-1.5)+'deg"><div class="fr"><div class="ph2">'+(p.photo_path?'<img src="'+src(p)+'" alt="'+esc(p.name)+'" loading="lazy">':'<b>'+esc((p.name||'?').charAt(0))+'</b>')+'</div><div class="nm">'+esc(p.name)+'</div><div class="rl">'+esc(p.role)+(p.year?' · '+esc(p.year):'')+'</div></div></div>'}
+function fcard(p){return '<div class="fac"><div class="pc" style="--r:-1deg"><div class="fr"><div class="ph2">'+(p.photo_path?'<img src="'+src(p)+'" alt="'+esc(p.name)+'" loading="lazy">':'<b>'+esc((p.name||'?').charAt(0))+'</b>')+'</div></div></div><div><div class="m">'+esc(p.post)+'</div><h3 class="s" style="font-size:clamp(1.8rem,3vw,2.6rem);margin:.7rem 0 1rem">'+esc(p.name)+'</h3><p class="p">'+nl(p.descr)+'</p></div></div>'}
+function rows(a,c){return a.length?'<div class="lst">'+a.map(function(x){return '<div class="li"><b>'+esc(x.name)+'</b><span>'+esc(x[c[0]])+'</span><span>'+esc(x[c[1]])+'</span></div>'}).join('')+'</div>':'<p class="p">Nobody listed yet.</p>'}
+function reqForm(k){var m=k=='member';return '<details class="dt"><summary>'+(m?'I am a current member, add my details':'I am an alumnus, add me to the list')+'</summary><form class="fm" data-form="req"><input type="hidden" name="kind" value="'+k+'"><label>Full name<input name="name" required></label><label>'+(m?'Department':'Batch (passing year)')+'<input name="'+(m?'dept':'year')+'" required></label>'+(m?'<label>Year of study<input name="year"></label>':'<label>Current role / organisation<input name="org"></label>')+'<label>Email or phone (never shown publicly)<input name="contact"></label><label class="f">Message for the team<textarea name="msg" rows="2"></textarea></label><button class="btn f" type="submit">Send for approval</button></form></details>'}
+function tabs(page,list,cur,cnt){return '<div class="tabs">'+list.map(function(x){var n=cnt&&cnt[x[0]];return '<button class="'+(cur==x[0]?'on':'')+'" data-act="tab" data-p="'+page+'" data-t="'+x[0]+'">'+x[1]+(n?'<i>'+n+'</i>':'')+'</button>'}).join('')+'</div>'}
+function renderTeam(){var e=$('#teamBody'),t=TAB.team;if(!e)return;var h=tabs('team',[['ph','Post holders'],['fac','Faculty'],['mem','Members'],['alu','Alumni']],t);
+if(t=='ph'){var L=S.post_holders.slice().sort(function(a,b){return a.pri-b.pri});h+='<span class="m">Current post holders</span>'+(L.length?'<div class="hold top" style="margin-top:1.5rem">'+L.slice(0,2).map(card).join('')+'</div><div class="hold">'+L.slice(2).map(card).join('')+'</div>':'<p class="p" style="margin-top:1rem">Post holders will be announced soon.</p>')}
+else if(t=='fac'){h+='<span class="m">Our faculty</span><div style="margin-top:1rem">'+(S.faculty.length?S.faculty.slice().sort(function(a,b){return a.pri-b.pri}).map(fcard).join(''):'<p class="p">Faculty details will be added soon.</p>')+'</div>'}
+else if(t=='mem')h+='<span class="m">Current members</span><div style="margin:1.5rem 0 3rem">'+rows(S.members,['dept','year'])+'</div>'+reqForm('member');
+else h+='<span class="m">Our alumni</span><div style="margin:1.5rem 0 3rem">'+rows(S.alumni,['batch','org'])+'</div>'+reqForm('alumni');
+e.innerHTML=h}
+function renderGallery(){var e=$('#gal');if(e)e.innerHTML=S.gallery.map(function(g){return '<div><figure class="fig"><div class="im"><img src="'+src(g)+'" alt="'+esc(g.cap)+'" loading="lazy"></div><figcaption>'+esc(g.cap)+'</figcaption></figure></div>'}).join('')}
+function V(t){return EDIT.t==t&&EDIT.item?EDIT.item:{}}
+function I(l,n,v,x){return '<label>'+l+'<input name="'+n+'" value="'+esc(v==null?'':v)+'" '+(x||'')+'></label>'}
+function hid(t){var v=V(t);return v.id?'<input type="hidden" name="id" value="'+esc(v.id)+'">':''}
+function sub(t,a){return '<div class="f">'+'<button class="btn" type="submit">'+(V(t).id?'Save changes':a)+'</button> '+(V(t).id?'<button class="sm" type="button" data-act="cancel">Cancel</button>':'')+'</div>'}
+function pend(k){var a=S.requests.filter(function(x){return x.kind==k});return '<h3 class="s sm3">Pending requests</h3>'+(a.length?a.map(function(x){return '<div class="li"><b>'+esc(x.name)+'</b><span>'+esc(k=='member'?x.dept+' · '+x.year:x.year+' · '+x.org)+(x.msg?'<br>“'+esc(x.msg)+'”':'')+(x.contact?'<br>'+esc(x.contact):'')+'</span><span><button class="sm ok" data-act="appr" data-id="'+x.id+'">Approve</button> <button class="sm no" data-act="rej" data-id="'+x.id+'">Reject</button></span></div>'}).join(''):'<p class="p">No pending requests.</p>')}
+function dl(t,c,ed,tt){return S[t].map(function(x){return '<div class="li"><b>'+esc(x.name||x.title)+'</b><span>'+esc(x[c[0]])+(c[1]?' · '+esc(x[c[1]]):'')+'</span><span>'+(ed?'<button class="sm" data-act="edit" data-t="'+t+'" data-id="'+x.id+'">Edit</button> ':'')+'<button class="sm no" data-act="del" data-t="'+t+'" data-id="'+x.id+'">'+(tt||'Remove')+'</button></span></div>'}).join('')}
+function renderAdmin(){var e=$('#adminBody');if(!e)return;
+if(ROLE!='admin'&&ROLE!='member'){e.innerHTML=API.live?'<div class="dt" style="padding:2rem"><p class="p" style="margin-bottom:1.2rem">Sign in with the Google account the admin has approved.</p><button class="btn" data-act="login">Sign in with Google</button> <button class="sm" data-act="logout">Switch account</button></div>':'<form class="fm" data-form="login"><label>Role<select name="role"><option value="admin">Admin</option><option value="member">Member (alumni approvals)</option></select></label><label>PIN<input name="pin" type="password" required></label><button class="btn f" type="submit">Sign in</button></form>';return}
+var adm=ROLE=='admin',cm=S.requests.filter(function(x){return x.kind=='member'}).length,ca=S.requests.filter(function(x){return x.kind=='alumni'}).length,t=adm?TAB.admin:'alu';
+var L=adm?[['ann','Live now'],['ph','Post holders'],['fac','Faculty'],['mem','Members'],['alu','Alumni'],['gal','Gallery']].concat(API.live?[['acc','Access']]:[]):[['alu','Alumni']];
+var h='<div class="ab"><span class="m">Signed in as '+ROLE+(API.live?'':' · demo mode, data stays in this browser')+'</span><button class="sm" data-act="logout">Sign out</button></div>'+tabs('admin',L,t,{mem:cm,alu:ca});
+if(t=='ann')h+='<form class="fm" data-form="ann"><label>Type<select name="type"><option>Recruitment</option><option>Event</option><option>Notice</option></select></label>'+I('Title','title','','required')+'<label class="f">Details<textarea name="txt" rows="2"></textarea></label>'+I('Link (form or Instagram post)','link','','placeholder="https://"').replace('<label>','<label class="f">')+'<label class="f chk"><input type="checkbox" name="notify" checked> Notify everyone who enabled notifications</label><div class="f"><button class="btn" type="submit">Go live</button></div></form><h3 class="s sm3">Live right now</h3>'+(S.announcements.length?dl('announcements',['type'],false,'End'):'<p class="p">Nothing is live.</p>');
+else if(t=='ph'){var v=V('post_holders');h+='<form class="fm" data-form="ph">'+hid('post_holders')+I('Post','role',v.role,'required placeholder="President"')+I('Name','name',v.name,'required')+I('Term','year',v.year==null?'2026–27':v.year)+I('Order (1 = President, 2 = CTC)','pri',v.pri==null?9:v.pri,'type="number"')+'<label class="f">Photo'+(v.photo_path?' (leave empty to keep the current one)':'')+'<input type="file" name="photo" accept="image/*"></label>'+sub('post_holders','Add post holder')+'</form><h3 class="s sm3">Current post holders</h3>'+dl('post_holders',['role','year'],true)}
+else if(t=='fac'){var f=V('faculty');h+='<form class="fm" data-form="fac">'+hid('faculty')+I('Name','name',f.name,'required')+I('Post / designation','post',f.post,'required')+I('Order','pri',f.pri==null?9:f.pri,'type="number"')+'<label class="f">Description<textarea name="descr" rows="4">'+esc(f.descr||'')+'</textarea></label><label class="f">Photo'+(f.photo_path?' (leave empty to keep the current one)':'')+'<input type="file" name="photo" accept="image/*"></label>'+sub('faculty','Add faculty')+'</form><h3 class="s sm3">Faculty</h3>'+dl('faculty',['post'],true)}
+else if(t=='mem')h+=pend('member')+'<h3 class="s sm3">Add a member</h3><form class="fm" data-form="madd">'+I('Name','name','','required')+I('Department','dept','')+I('Year','year','')+'<div class="f"><button class="btn" type="submit">Add</button></div></form><h3 class="s sm3">Current members</h3>'+dl('members',['dept','year']);
+else if(t=='alu')h+=pend('alumni')+(adm?'<h3 class="s sm3">Add an alumnus</h3><form class="fm" data-form="aadd">'+I('Name','name','','required')+I('Batch','batch','')+I('Current role','org','')+'<div class="f"><button class="btn" type="submit">Add</button></div></form><h3 class="s sm3">Alumni</h3>'+dl('alumni',['batch','org']):'');
+else if(t=='gal')h+='<form class="fm" data-form="gal"><label class="f">Photos<input type="file" name="photos" accept="image/*" multiple required></label>'+I('Caption','cap','','placeholder="Event name"').replace('<label>','<label class="f">')+'<div class="f"><button class="btn" type="submit">Upload</button></div></form><div class="ab"><h3 class="s sm3" style="margin:0">Gallery ('+S.gallery.length+')</h3>'+(API.live?'':'<button class="sm" data-act="reset">Restore original photos</button>')+'</div><div class="gt">'+S.gallery.map(function(g){return '<div><img src="'+src(g)+'" alt="" loading="lazy"><button class="sm no" data-act="del" data-t="gallery" data-id="'+g.id+'">Remove</button></div>'}).join('')+'</div>';
+else{h+='<h3 class="s sm3">People who signed in</h3><p class="p">Give a role: <b>member</b> can approve alumni requests, <b>admin</b> can change everything.</p><div id="acc"></div>';API.profiles().then(function(a){var c=$('#acc');if(c)c.innerHTML=a.map(function(p){return '<div class="li"><b>'+esc(p.name||p.email)+'</b><span>'+esc(p.email)+'</span><span><select data-pid="'+p.id+'">'+['visitor','alumni','member','admin'].map(function(r){return '<option'+(p.role==r?' selected':'')+'>'+r+'</option>'}).join('')+'</select></span></div>'}).join('')||'<p class="p">Nobody yet.</p>'}).catch(function(x){toast(x.message)})}
+e.innerHTML=h}
+function renderAll(){banner();renderTeam();renderGallery();renderAdmin()}
+async function refresh(){S=await API.load();renderAll()}
+function run(p,msg){return p.then(function(){EDIT={t:'',item:null};return refresh()}).then(function(){if(msg)toast(msg)}).catch(function(x){toast(x.message||'Something went wrong')})}
+async function start(){try{ROLE=await API.boot();var n=null;try{n=sessionStorage.getItem('yfac_next');sessionStorage.removeItem('yfac_next')}catch(x){}if(n&&ROLE!='visitor')location.hash=n;await refresh()}catch(x){toast('Could not reach the server. Please try again.')}}
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-act]');if(!b)return;var a=b.dataset.act,t=b.dataset.t,id=b.dataset.id;
+if(a=='alerts'){e.preventDefault();API.subscribe().then(function(){toast('Notifications are on');banner()}).catch(function(x){toast(x.message)});return}
+if(a=='tab'){location.hash='#'+b.dataset.p+'/'+t;return}
+if(a=='login'){API.login().catch(function(x){toast(x.message)});return}
+if(a=='logout'){API.logout().then(start);return}
+if(a=='cancel'){EDIT={t:'',item:null};renderAdmin();return}
+if(ROLE!='admin'&&!(ROLE=='member'&&(a=='appr'||a=='rej')))return;
+var it=t&&id?S[t].filter(function(x){return x.id==id})[0]:null;
+if(a=='edit'){EDIT={t:t,item:it};renderAdmin();window.scrollTo({top:0})}
+else if(a=='del'){if(it&&confirm('Remove this entry?'))run(API.del(t,it))}
+else if(a=='reset')run(API.reset());
+else if(a=='appr'||a=='rej')run(API.review(id,a=='appr'),a=='appr'?'Approved and listed':'Request rejected')});
+document.addEventListener('change',function(e){var s=e.target;if(s.dataset&&s.dataset.pid&&ROLE=='admin')API.setRole(s.dataset.pid,s.value).then(function(){toast('Role updated')}).catch(function(x){toast(x.message)})});
+document.addEventListener('submit',function(e){var f=e.target,k=f.dataset.form;if(!k)return;e.preventDefault();var d=Object.fromEntries(new FormData(f)),fl=d.photo&&d.photo.size?d.photo:null,o;
+if(k=='login'){API.login(d.role,d.pin).then(start).catch(function(x){toast(x.message)});return}
+if(k=='req'){run(API.ask({kind:d.kind,name:d.name,dept:d.dept||'',year:d.year||'',org:d.org||'',contact:d.contact||'',msg:d.msg||''}).then(function(){f.reset()}),'Sent. The team will review it.');return}
+if(ROLE!='admin')return;
+if(k=='ann')run(API.save('announcements',{type:d.type,title:d.title,txt:d.txt,link:d.link,active:true}).then(function(){return d.notify?API.notify({title:d.title,txt:d.txt,link:d.link}).then(function(){toast('Live. Subscribers notified')}):0}),'Live now');
+else if(k=='ph'){o={role:d.role,name:d.name,year:d.year,pri:+d.pri||9};if(d.id)o.id=d.id;run(API.save('post_holders',o,fl),'Saved')}
+else if(k=='fac'){o={name:d.name,post:d.post,descr:d.descr,pri:+d.pri||9};if(d.id)o.id=d.id;run(API.save('faculty',o,fl),'Saved')}
+else if(k=='madd')run(API.save('members',{name:d.name,dept:d.dept,year:d.year}),'Member added');
+else if(k=='aadd')run(API.save('alumni',{name:d.name,batch:d.batch,org:d.org}),'Alumnus added');
+else if(k=='gal'){var fs=Array.prototype.slice.call(f.photos.files);run(fs.reduce(function(p,x){return p.then(function(){return API.save('gallery',{cap:d.cap||'YFAC moment'},x)})},Promise.resolve()),fs.length+' photo(s) added')}});
+var lk=document.getElementById('lk'),io;
+
+try{io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12})}catch(x){}
+function route(){
+  var p=(location.hash||'#home').slice(1).split('/'),id=p[0];if(!document.getElementById(id))id='home';if(id=='team')TAB.team=p[1]||'ph';if(id=='admin')TAB.admin=p[1]||TAB.admin;
+  document.querySelectorAll('.page').forEach(function(p){p.classList.toggle('active',p.id===id)});
+  document.querySelectorAll('.links a').forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+id)});
+  if(CUR!==id){window.scrollTo(0,0);CUR=id}renderAll();var on=document.querySelector('.links a.on');if(on)lk.scrollLeft=on.offsetLeft-lk.clientWidth/2+on.clientWidth/2;
+  document.querySelectorAll('#'+id+' .rv').forEach(function(el){io?io.observe(el):el.classList.add('in')});
+}
+window.addEventListener('hashchange',route);route();start();
+</script>
+</body>
+</html>

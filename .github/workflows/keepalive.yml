@@ -1,0 +1,10 @@
+# Supabase free projects pause after a week without traffic. This pings the database every 3 days.
+name: keepalive
+on:
+  schedule: [{ cron: "0 6 */3 * *" }]
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl -sf "${{ secrets.SUPABASE_URL }}/rest/v1/post_holders?select=id&limit=1" -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" -o /dev/null

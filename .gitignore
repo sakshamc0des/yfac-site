@@ -1,0 +1,31 @@
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Frontend dependencies and build output
+node_modules/
+dist/
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Python environments and generated files
+.venv/
+venv/
+backend/.venv/
+backend/venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+
+# Logs
+*.log
